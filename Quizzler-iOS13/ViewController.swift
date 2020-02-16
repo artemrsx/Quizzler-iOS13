@@ -9,6 +9,21 @@ class ViewController: UIViewController {
         ["question3", "True"]
     ];
     
+    let quiz2 = [
+        [
+            "question": "1 + 1 = 2",
+            "answer": "True"
+        ],
+        [
+            "question": "2 + 2 = 5",
+            "answer": "False"
+        ],
+        [
+            "question": "3 + 3 = 6",
+            "answer": "True"
+        ],
+    ];
+    
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var trueButton: UIButton!
@@ -18,16 +33,17 @@ class ViewController: UIViewController {
         updateUI();
     }
     @IBAction func answerButtonPressed(_ sender: UIButton) {
-        let usersAnswer = sender.currentTitle;
-        let rightAnswer = quiz[questionNumber][1];
+        let userAnswer = sender.currentTitle;
+        let question = quiz2[questionNumber];
+        let correctAnswer = question["answer"];
         
-        if (usersAnswer == rightAnswer) {
+        if (userAnswer == correctAnswer) {
             print("Right");
         } else {
             print("Wrong");
         }
         
-        if (questionNumber + 1 < quiz.count) {
+        if (questionNumber + 1 < quiz2.count) {
             questionNumber += 1;
         } else {
             questionNumber = 0;
@@ -36,7 +52,7 @@ class ViewController: UIViewController {
         updateUI();
     }
     func updateUI () {
-        questionLabel.text = quiz[questionNumber][0];
+        questionLabel.text = quiz2[questionNumber]["question"];
     }
 
 }
